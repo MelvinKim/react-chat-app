@@ -1,2 +1,2 @@
-# MERN-instagram-clone
-An app implementing instagram features using the MERN Stack
+# A React chat app
+A medical pager created using React
