@@ -1,2 +1,2 @@
-# react-chat-app
-a medical pager built using react and Stream API
+# MERN-instagram-clone
+An app implementing instagram features using the MERN Stack
