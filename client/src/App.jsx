@@ -6,6 +6,9 @@ import Cookies from 'universal-cookie';
 //importing the necessary components
 import { ChannelContainer, ChannelListContainer } from './components';
 
+//import the css styles
+import './App.css';
+
 //setup the apiKey
 const apiKey = 'jvetwzp4fvmf';
 
