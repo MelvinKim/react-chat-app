@@ -1,7 +1,10 @@
 const crypto = require('crypto');
 const { connect } = require('getstream');
 const bcrypt = require('bcrypt');
-const StreamChat = require('stream-chat');
+const StreamChat = require('stream-chat').StreamChat;
+
+require('dotenv').config();
+
 
 //create environment variables for confidential values
 const api_key = process.env.STREAM_API_KEY;
@@ -26,7 +29,7 @@ const signup = async (req, res) => {
 
         //return the data to the frontend
         res.status(200).json({ token, fullName, username, userId, hashedPassword, phoneNumber});
-
+ 
     } catch (error) {
         console.log(error);
 

@@ -4,6 +4,9 @@ import axios from 'axios';
 
 import signinImage from '../assets/signup.jpg';
 
+//create an instance of a cookie
+const cookies = new Cookies();
+
 const initialState = {
     fullName: '',
     username: '',
@@ -23,11 +26,34 @@ const Auth = () => {
 
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         //we handle logic of either login in or registering
         e.preventDefault();
 
-        console.log(form);
+        const { fullName, username, password, phoneNumber, avatarUrl } = form;
+        
+        const URL = "http://localhost:5000/auth";
+
+        //make an axios call
+        const { data: { token, userId, hashedPassword} } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+            username, password, fullName, phoneNumber, avatarUrl
+        });
+
+        //store the data you get back in a cookies
+        cookies.set('token', token)
+        cookies.set('username', username);
+        cookies.set('fullName', fullName);
+        cookies.set('userId', userId);
+
+        //if we are creating an account...
+        if(isSignup) {
+            cookies.set('phoneNumber', phoneNumber);
+            cookies.set('avatarUrl', avatarUrl);
+            cookies.set('hashedPassword', hashedPassword); 
+        }
+
+        //once cookies are set reload the browser
+        window.location.reload();
     }
 
     const switchMode = () => {
