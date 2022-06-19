@@ -30,13 +30,13 @@ const Auth = () => {
         //we handle logic of either login in or registering
         e.preventDefault();
 
-        const { fullName, username, password, phoneNumber, avatarUrl } = form;
+        const { username, password, phoneNumber, avatarUrl } = form;
         
         const URL = "http://localhost:5000/auth";
 
         //make an axios call
-        const { data: { token, userId, hashedPassword} } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-            username, password, fullName, phoneNumber, avatarUrl
+        const { data: { token, userId, hashedPassword, fullName} } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+            username, password, fullName: form.fullName, phoneNumber, avatarUrl
         });
 
         //store the data you get back in a cookies

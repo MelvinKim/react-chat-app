@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AddChannel } from '../assets';
 
-const TeamChannelList = ({ children, error=false, loading, type}) => {
+const TeamChannelList = ({ children, error=false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing, setToggleContainer }) => {
 
     //handle the errors that mau occur
     if(error) {
@@ -33,7 +33,17 @@ const TeamChannelList = ({ children, error=false, loading, type}) => {
                 <p className="team-channel-list__header__title">
                     {type === 'team' ? 'Channels' : 'Direct Messages'}
                 </p>
+                
                 {/* TODO: button to add a channel */}
+                <AddChannel
+                    isCreating={isCreating}
+                    setIsCreating={setIsCreating}
+                    setCreateType={setCreateType}
+                    setIsEditing={setIsEditing}
+                    type={ type === "team" ? "team" : "messaging"}
+                    setToggleContainer={setToggleContainer}
+                 />
+
             </div>
             { children }
         </div>

@@ -13,7 +13,7 @@ require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());  //allows passing of json payloads from the frontend to the backend
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true}));
 
 app.get("/", (req, res) => {
     res.send("Hello, world!"); 
